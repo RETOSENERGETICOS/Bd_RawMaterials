@@ -7,6 +7,10 @@ use App\Models\Brand;
 use App\Models\Family;
 use App\Models\File;
 use App\Models\Group;
+use App\Models\Countrysu;
+use App\Models\Countryor;
+use App\Models\Hazard;
+use App\Models\King;
 use App\Models\Log;
 use App\Models\Tool;
 use Illuminate\Support\Facades\DB;
@@ -26,15 +30,14 @@ class ToolController extends Controller
                 return [
                     'id' => $tool->id,
                     'item' => $tool->item,
-                    'description' => $tool->description,
-                    'measurement' => $tool->measurement,
-                    'group' => $tool->group,
                     'family' => $tool->family,
-                    'brand' => $tool->brand,
-                    'model' => $tool->model,
-                    'serial_number' => $tool->serial_number,
-                    'calibration_expiration' => $tool->calibration_expiration,
-                    'has_validation' => $tool->has_validation
+                    'countrysu' => $tool->countrysu,
+                    'countryor' => $tool->countryor,
+                    'hazard' => $tool->hazard,
+                    'king' => $tool->king,
+                    'date' => $tool->date,
+                    'product' => $tool->product,
+                    'brand' => $tool->brand
                 ];
             })
         );
@@ -44,23 +47,28 @@ class ToolController extends Controller
         return response()->json([
             'id' => $tool->id,
             'item' => $tool->item,
-            'description' => $tool->description,
-            'measurement' => $tool->measurement,
-            'group' => $tool->group,
             'family' => $tool->family,
+            'countrysu' => $tool->countrysu,
+            'countryor' => $tool->countryor,
+            'hazard' => $tool->hazard,
+            'king' => $tool->king,
+            'date' => $tool->date,
+            'product' => $tool->product,
             'brand' => $tool->brand,
-            'model' => $tool->model,
-            'serial_number' => $tool->serial_number,
-            'calibration_expiration' => $tool->calibration_expiration,
-            'has_validation' => $tool->has_validation,
-            'main_localization' => $tool->main_localization,
-            'shelf_localization' => $tool->shelf_localization,
-            'shelf' => $tool->shelf,
+            'reference' => $tool->reference,
+            'spec1' => $tool->spec1,
+            'spec2' => $tool->spec2,
+            'spec3' => $tool->spec3,
             'user' => $tool->user,
-            'min_stock' => $tool->min_stock,
-            'quantity' => $tool->quantity,
-            'dispatchable' => $tool->dispatchable,
-            'comments' => $tool->comments,
+            'supplier1' => $tool->supplier1,
+            'contact1' => $tool->contact1,
+            'email1' => $tool->email1,
+            'supplier2' => $tool->supplier2,
+            'contact2' => $tool->contact2,
+            'email2' => $tool->email2,
+            'supplier3' => $tool->supplier3,
+            'contact3' => $tool->contact3,
+            'email3' => $tool->email3,
             'files' => $tool->files->map(static function(File $file) {
                 return $file->path;
             })
@@ -113,9 +121,11 @@ class ToolController extends Controller
     public function update(Request $request, Tool $tool) {
         DB::beginTransaction();
         try {
-            $group = $this->getGroup($request->group);
             $family = $this->getFamily($request->family);
-            $brand = $this->getBrand($request->brand);
+            $countrysu = $this->getCountrysu($request->countrysu);
+            $countryor = $this->getCountryor($request->countryor);
+            $hazard = $this->getHazard($request->hazard);
+            $king = $this->getKing($request->king);
             $oldTool = json_encode($this->getValues($tool->toArray(), $tool));
             if ($request->main_localization !== $tool->main_localization) {
                 $tool->update([ 'quantity' => $tool->quantity - $request->movingQuantity ]);
@@ -130,23 +140,27 @@ class ToolController extends Controller
                 ]);
             } else {
                 $tool->update([
-                    'description' => $request->description,
-                    'group_id' => $group->id ?? null,
                     'family_id' => $family->id ?? null,
-                    'brand_id' => $brand->id ?? null,
-                    'model' => $request->model,
-                    'serial_number' => $request->serial,
-                    'size' => $request->size,
-                    'calibration_expiration' => $request->has_validation ? $request->calibration_expiration : null,
-                    'has_validation' => $request->has_validation,
-                    'main_localization' => $request->main_localization,
-                    'shelf_localization' => $request->shelf_localization,
-                    'shelf' => $request->shelf,
-                    'measurement' => $request->measurement,
-                    'min_stock' => $request->min_stock,
-                    'quantity' => $request->quantity,
-                    'comments' => $request->comments,
-                    'dispatchable' => $request->dispatchable
+                    'countrysu_id' => $countrysu->id ?? null,
+                    'countryor_id' => $countryor->id ?? null,
+                    'hazard_id' => $hazard->id ?? null,
+                    'king_id' => $king->id ?? null,
+                    'date' => $request->date,
+                    'product' => $request->product,
+                    'brand' => $request->brand,
+                    'reference' => $request->reference,
+                    'spec1' => $request->spec1,
+                    'spec2' => $request->spec2,
+                    'spec3' => $request->spec3,
+                    'supplier1' => $request->supplier1,
+                    'contact1' => $request->contact1,
+                    'email1' => $request->email1,
+                    'supplier2' => $request->supplier2,
+                    'contact2' => $request->contact2,
+                    'email2' => $request->email2,
+                    'supplier3' => $request->supplier3,
+                    'contact3' => $request->contact3,
+                    'email3' => $request->email3
                 ]);
                 $oldValues = $tool->getChanges();
                 if (count($oldValues) > 0) {
@@ -170,27 +184,33 @@ class ToolController extends Controller
     }
 
     private function createTool(Request $request) {
-        $group = $this->getGroup($request->group);
         $family = $this->getFamily($request->family);
-        $brand = $this->getBrand($request->brand);
+        $countrysu = $this->getCountrysu($request->countrysu);
+        $countryor = $this->getCountryor($request->countryor);
+        $hazard = $this->getHazard($request->hazard);
+        $king = $this->getKing($request->king);
         $tool = $request->user()->tools()->create([
-            'description' => $request->description,
-            'group_id' => $group->id ?? null,
             'family_id' => $family->id ?? null,
-            'brand_id' => $brand->id ?? null,
-            'model' => $request->model,
-            'serial_number' => $request->serial,
-            'size' => $request->size,
-            'calibration_expiration' => $request->has_validation ? $request->calibration_expiration : null,
-            'has_validation' => $request->has_validation,
-            'main_localization' => $request->main_localization,
-            'shelf_localization' => $request->shelf_localization,
-            'shelf' => $request->shelf,
-            'measurement' => $request->measurement,
-            'min_stock' => $request->min_stock,
-            'quantity' => $request->quantity,
-            'comments' => $request->comments,
-            'dispatchable' => $request->dispatchable
+            'countrysu_id' => $countrysu->id ?? null,
+            'countryor_id' => $countryor->id ?? null,
+            'hazard_id' => $hazard->id ?? null,
+            'king_id' => $king->id ?? null,
+            'date' => $request->date,
+            'product' => $request->product,
+            'brand' => $request->brand,
+            'reference' => $request->reference,
+            'spec1' => $request->spec1,
+            'spec2' => $request->spec2,
+            'spec3' => $request->spec3,
+            'supplier1' => $request->supplier1,
+            'contact1' => $request->contact1,
+            'email1' => $request->email1,
+            'supplier2' => $request->supplier2,
+            'contact2' => $request->contact2,
+            'email2' => $request->email2,
+            'supplier3' => $request->supplier3,
+            'contact3' => $request->contact3,
+            'email3' => $request->email3
         ]);
         $tool->update([
             'item' => sprintf('AAA%04d', $tool->id)
@@ -200,11 +220,11 @@ class ToolController extends Controller
 
     private function getValues($values, Tool $tool) {
 //        dd($values, $tool);
-        $specialAttributes = ['group_id' => 'group','family_id' => 'family','brand_id' => 'brand'];
-        $names = ['item' => 'Item','description' => 'Descripcion','group_id' => 'Sub Grupo','family_id' => 'Familia','brand_id' => 'Marca',
-            'model' => 'Modelo','serial_number' => 'Numero de serie','calibration_expiration' => 'Expiracion de calibracion','dispatchable' => 'Despachable',
-            'has_validation' => 'Sujeto a validacion', 'main_localization' => 'Localizacion principal', 'shelf_localization' => 'Localizacion de estante', 'shelf' => 'Estante',
-            'measurement' => 'Medida', 'min_stock' => 'Stock minimo', 'quantity' => 'Cantidad', 'comments' => 'Comentarios'];
+        $specialAttributes = ['family_id' => 'family','countrysu_id' => 'countrysu','countryor_id' => 'countryor','hazard_id' => 'hazard','king_id' => 'king'];
+        $names = ['item' => 'Item','family' => 'Familia','countrysu_id' => 'Pais de suministro','countryor_id' => 'Pais de origen','hazard_id' => 'Peligrosidad','king_id' => 'Tipo peligrosidad',
+            'date' => 'Caducidad','product' => 'Producto','brand' => 'Marca','reference' => 'Referencia','spec1' => 'Caracteristica 1','spec2' => 'Caracteristica 2','spec3' => 'Caracteristica 3',
+            'supplier1' => 'Suministrador 1', 'contact1' => 'Persona de contacto 1', 'email1' => 'Email 1', 'supplier2' => 'Suministrador 2', 'contact2' => 'Persona de contacto 2', 'email2' => 'Email 2',
+            'supplier3' => 'Suministrador 3', 'contact3' => 'Persona de contacto 3', 'email3' => 'Email 3'];
         $data = array();
         foreach (array_keys($values) as $key) {
             if (array_key_exists($key, $specialAttributes)) {
@@ -220,26 +240,33 @@ class ToolController extends Controller
         return [
             'id' => $tool->id,
             'item' => $tool->item,
-            'description' => $tool->description,
-            'measurement' => $tool->measurement,
-            'group' => $tool->group,
             'family' => $tool->family,
+            'countrysu' => $tool->countrysu,
+            'countryor' => $tool->countryor,
+            'hazard' => $tool->hazard,
+            'king' => $tool->king,
+            'date' => $tool->date,
+            'product' => $tool->product,
             'brand' => $tool->brand,
-            'model' => $tool->model,
-            'serial_number' => $tool->serial_number,
-            'calibration_expiration' => $tool->calibration_expiration,
-            'has_validation' => $tool->has_validation,
-            'main_localization' => $tool->main_localization,
-            'shelf_localization' => $tool->shelf_localization,
-            'shelf' => $tool->shelf,
+            'reference' => $tool->reference,
+            'spec1' => $tool->spec1,
+            'spec2' => $tool->spec2,
+            'spec3' => $tool->spec3,
             'user' => $tool->user,
-            'min_stock' => $tool->min_stock,
-            'quantity' => $tool->quantity
+            'supplier1' => $tool->supplier1,
+            'contact1' => $tool->contact1,
+            'email1' => $tool->email1,
+            'supplier2' => $tool->supplier2,
+            'contact2' => $tool->contact2,
+            'email2' => $tool->email2,
+            'supplier3' => $tool->supplier3,
+            'contact3' => $tool->contact3,
+            'email3' => $tool->email3
         ];
     }
 
     public function search(Request $request) {
-        $especialKeys = ['group','brand','family','user'];
+        $especialKeys = ['family','countrysu','countryor','hazard','king','user'];
         $filters = $request->keys();
         $query = Tool::query();
         foreach($filters as $filter) {
@@ -259,19 +286,6 @@ class ToolController extends Controller
         return response()->json($data);
     }
 
-    private function getGroup($data)
-    {
-        if (is_null($data)) {
-            return null;
-        }
-        if (is_array($data)) {
-            return Group::find($data['id']);
-        }
-        return Group::where('name', $data)->firstOrCreate([
-            'name' => $data
-        ]);
-    }
-
     private function getFamily($data)
     {
         if (is_null($data)) {
@@ -285,15 +299,54 @@ class ToolController extends Controller
         ]);
     }
 
-    private function getBrand($data)
+    private function getCountrysu($data)
     {
         if (is_null($data)) {
             return null;
         }
         if (is_array($data)) {
-            return Brand::find($data['id']);
+            return Countrysu::find($data['id']);
         }
-        return Brand::where('name', $data)->firstOrCreate([
+        return Countrysu::where('name', $data)->firstOrCreate([
+            'name' => $data
+        ]);
+    }
+
+    private function getCountryor($data)
+    {
+        if (is_null($data)) {
+            return null;
+        }
+        if (is_array($data)) {
+            return Countryor::find($data['id']);
+        }
+        return Countryor::where('name', $data)->firstOrCreate([
+            'name' => $data
+        ]);
+    }
+
+    private function getHazard($data)
+    {
+        if (is_null($data)) {
+            return null;
+        }
+        if (is_array($data)) {
+            return Hazard::find($data['id']);
+        }
+        return Hazard::where('name', $data)->firstOrCreate([
+            'name' => $data
+        ]);
+    }
+
+    private function getKing($data)
+    {
+        if (is_null($data)) {
+            return null;
+        }
+        if (is_array($data)) {
+            return King::find($data['id']);
+        }
+        return King::where('name', $data)->firstOrCreate([
             'name' => $data
         ]);
     }
