@@ -19,16 +19,24 @@ class Tool extends Model
         'dispatchable' => 'boolean'
     ];
 
-    public function brand(): BelongsTo {
-        return $this->belongsTo(Brand::class);
-    }
-
     public function family(): BelongsTo {
         return $this->belongsTo(Family::class);
     }
 
-    public function group(): BelongsTo {
-        return $this->belongsTo(Group::class);
+    public function countrysu(): BelongsTo {
+        return $this->belongsTo(Countrysu::class);
+    }
+
+    public function countryor(): BelongsTo {
+        return $this->belongsTo(Countrysu::class);
+    }
+
+    public function hazard(): BelongsTo {
+        return $this->belongsTo(Hazard::class);
+    }
+
+    public function king(): BelongsTo {
+        return $this->belongsTo(King::class);
     }
 
     public function files(): MorphMany {
