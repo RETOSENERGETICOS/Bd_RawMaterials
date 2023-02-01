@@ -15,72 +15,81 @@
             <div class="form-container">
                 <div class="form-column">
                     <div class="form-row">
-                        <v-textarea v-model="tool.description" label="Descripcion" rows="1" :rules="[rules.required]"></v-textarea>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.family" label="Familia" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.family" label="Familia" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.group" label="Sub Grupo" :items="groups" item-text="name" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.group" label="Sub Grupo" :items="groups" item-text="name" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countrysu" label="Pais de suministro" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countrysu" label="Pais de suministro" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.family" label="Familia" :items="families" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.family" label="Familia" :items="families" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countryor" label="Pais de origen" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countryor" label="Pais de origen" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.brand" label="Marca" :items="brands" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.brand" label="Marca" :items="brands" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
-                    </div>
-                </div>
-                <div class="form-column">
-                    <div class="form-row">
-                        <v-text-field v-model="tool.model" label="Modelo"></v-text-field>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.hazard" label="Peligrosidad" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.hazard" label="Peligrosidad" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.serial" label="N de Serie"></v-text-field>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
-                    <div class="form-row">
-                        <p>Sujeto a validacion</p>
-                        <v-radio-group v-model="tool.has_validation" mandatory>
-                            <v-radio label="Si" :value="true"></v-radio>
-                            <v-radio label="No" :value="false"></v-radio>
-                        </v-radio-group>
-                    </div>
-                    <div class="form-row">
+                    <v-col cols="4" v-if="filters.date.active">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
                             <template v-slot:activator="{on, attrs}">
-                                <v-text-field v-model="tool.calibration_expiration" label="Vencimiento de calibracion" v-on="on" v-bind="attrs" :disabled="!tool.has_validation"></v-text-field>
+                                <v-text-field v-model="filter.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
                             </template>
-                            <v-date-picker v-model="tool.calibration_expiration" label="Vencimiento de calibracion" no-title></v-date-picker>
+                            <v-date-picker v-model="filter.date" label="Caducidad" no-title></v-date-picker>
                         </v-menu>
-                    </div>
+                    </v-col>
                     <div class="form-row">
-                        <v-text-field v-model="tool.main_localization" label="Localizacion principal" :rules="[rules.required]"></v-text-field>
-                    </div>
-                    <div class="form-row">
-                        <v-text-field v-model="tool.shelf_localization" label="Localizacion de estante"></v-text-field>
-                    </div>
-                    <div class="form-row">
-                        <v-text-field v-model="tool.shelf" label="# Estante"></v-text-field>
+                        <v-text-field v-model="tool.product" label="Producto"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="form-row">
-                        <p>Despachable</p>
-                        <v-radio-group mandatory>
-                            <v-radio label="Si" :value="true"></v-radio>
-                            <v-radio label="No" :value="false"></v-radio>
-                        </v-radio-group>
+                        <v-text-field v-model="tool.brand" label="Marca"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model.number="tool.quantity" label="Cantidad" :rules="[rules.required, v => v > 0 || 'Cantidad invalida']"></v-text-field>
+                        <v-text-field v-model="tool.reference" label="Referencia"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.measurement" label="Unidad de medida" :rules="[rules.required]"></v-text-field>
+                        <v-text-field v-model="tool.spec1" label="Caractristica 1"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.min_stock" label="Inventario minimo"></v-text-field>
+                        <v-text-field v-model="tool.spec2" label="Caractristica 2"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-textarea v-model="tool.comments" label="Comentarios"></v-textarea>
+                        <v-text-field v-model="tool.spec3" label="Caractristica 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.supplier1" label="Suministrador 1"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact2" label="Persona de contacto 2"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email2" label="Email 2"></v-text-field>
+                    </div>
+                     <div class="form-row">
+                        <v-text-field v-model="tool.supplier3" label="Suministrador 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>
                     </div>
                     <div class="form-row">
                         <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" @processfile="onProcessFile" :allow-multiple="true"></file-pond>
@@ -108,26 +117,34 @@ export default {
         menu: false,
         valid: false,
         rules : { required: required },
-        groups: [],
         families: [],
-        brands: [],
+        countrysus: [],
+        countryors: [],
+        hazards: [],
+        kings: [],
         tool: {
-            description: null,
-            group: null,
             family: null,
+            countrysu: null,
+            countryor: null,
+            hazard: null,
+            king: null,
+            date: null,
+            product: null,
             brand: null,
-            model: null,
-            serial: null,
-            calibration_expiration: null,
-            has_validation: false,
-            main_localization: null,
-            shelf_localization: null,
-            shelf: null,
-            measurement: null,
-            min_stock: null,
-            quantity: null,
-            documents: [],
-            comments: null
+            reference: null,
+            spec1: null,
+            spec2: null,
+            spec3: null,
+            supplier1: null,
+            contact1: null,
+            email1: null,
+            supplier2: null,
+            contact2: null,
+            email2: null,
+            supplier3: null,
+            contact3: null,
+            email3: null,
+            documents: []
         }
     }),
     methods: {
@@ -161,22 +178,28 @@ export default {
         },
         clearForm() {
             this.tool = {
-                description: null,
-                group: null,
                 family: null,
+                countrysu: null,
+                countryor: null,
+                hazard: null,
+                king: null,
+                date: null,
+                product: null,
                 brand: null,
-                model: null,
-                serial: null,
-                calibrationExpiration: null,
-                hasValidation: false,
-                mainLocalization: null,
-                shelfLocalization: null,
-                shelf: null,
-                measurement: null,
-                minStock: null,
-                quantity: null,
-                documents: [],
-                comments: null
+                reference: null,
+                spec1: null,
+                spec2: null,
+                spec3: null,
+                supplier1: null,
+                contact1: null,
+                email1: null,
+                supplier2: null,
+                contact2: null,
+                email2: null,
+                supplier3: null,
+                contact3: null,
+                email3: null,
+                documents: []
             }
             this.$refs.documents.removeFiles()
         }
@@ -199,9 +222,11 @@ export default {
                 }
             }
         })
-        await axios.get('/api/groups', getToken()).then(response => this.groups =  response.data )
         await axios.get('/api/families', getToken()).then(response => this.families = response.data)
-        await axios.get('/api/brands', getToken()).then(response => this.brands = response.data)
+        await axios.get('/api/countrysus', getToken()).then(response => this.countrysus = response.data)
+        await axios.get('/api/countryors', getToken()).then(response => this.countryors = response.data)
+        await axios.get('/api/hazards', getToken()).then(response => this.hazards = response.data)
+        await axios.get('/api/kings', getToken()).then(response => this.kings = response.data)
         this.loading = false
     },
     components: {

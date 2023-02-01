@@ -42,7 +42,7 @@ export default {
         loading: false,
         search: null,
         headers: [],
-        specialKeys: ['group','family','brand'],
+        specialKeys: ['family','countrysu','countryor','hazard','king'],
         historyHeaders: [
             {text: 'Item', value: 'tool.item'},
             {text: 'Familia', value: 'family.name'},

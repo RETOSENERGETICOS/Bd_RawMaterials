@@ -29,17 +29,13 @@ export default {
         items: [],
         search: null,
         headers: [
-            { text: 'ITEM', value: 'item' },
-            { text: 'Descripcion', value: 'description' },
-            { text: 'Dimension Principal', value: 'measurement' },
-            { text: 'Subgrupo', value: 'group.name' },
-            { text: 'Familia', value: 'family.name' },
-            { text: 'Marca', value: 'brand.name' },
-            { text: 'Modelo', value: 'model' },
-            { text: '# Serie', value: 'serial_number' },
-            { text: 'Vencimiento de calibracion', value: 'calibration_expiration' },
-            { text: 'Sujeto a validacion', value: 'has_validation' },
-            { text: '', value: 'edit' }
+            {text: 'ITEM', value: 'item'},
+            {text: 'Familia', value: 'family.name'},
+            {text: 'Pais de suministro', value: 'countrysu.name'},
+            {text: 'Pais de origen', value: 'countryor.name'},
+            {text: 'Peligrosidad', value: 'hazard.name'},
+            {text: 'Tipo peligrosidad', value: 'king.name'},
+            {text: '', value: 'edit'}
         ]
     }),
     methods: {

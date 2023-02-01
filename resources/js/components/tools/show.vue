@@ -17,78 +17,84 @@
                     <v-form v-model="valid">
                         <v-row>
                             <v-col cols="4">
-                                <v-textarea label="Descripcion" v-model="tool.description" :rows="1" :rules="[rules.required]" disabled></v-textarea>
-                            </v-col>
-                            <v-col cols="4">
-                                <v-combobox label="Subgrupo" v-model="tool.group" item-text="name" :items="groups" clearable item-value="name"></v-combobox>
-                            </v-col>
-                            <v-col cols="4">
                                 <v-combobox label="Familia" v-model="tool.family" item-text="name" :items="families" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
-                        </v-row>
-                        <v-row>
                             <v-col cols="4">
-                                <v-combobox label="Marca" v-model="tool.brand" item-text="name" :items="brands" item-value="name" disabled></v-combobox>
+                                <v-combobox label="Pais de suministro" v-model="tool.countrysu" item-text="name" :items="countrysus" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Modelo" v-model="tool.model"></v-text-field>
-                            </v-col>
-                            <v-col cols="4">
-                                <v-text-field label="# Serie" v-model="tool.serial" disabled></v-text-field>
+                                <v-combobox label="Pais de origen" v-model="tool.countryor" item-text="name" :items="countryors" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="4">
-                                <p>Sujeto a validacion</p>
-                                <v-radio-group v-model="tool.has_validation" row disabled>
-                                    <v-radio label="Si" :value="true"></v-radio>
-                                    <v-radio label="No" :value="false"></v-radio>
-                                </v-radio-group>
+                                <v-combobox label="Peligrosidad" v-model="tool.hazard" item-text="name" :items="hazards" item-value="name" disabled></v-combobox>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-combobox label="Tipo peligrosidad" v-model="tool.king" item-text="name" :items="kings" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
                                 <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
                                     <template v-slot:activator="{on, attrs}">
-                                        <v-text-field v-model="tool.calibration_expiration" label="Vencimiento de calibracion" v-on="on" v-bind="attrs" :disabled="!tool.has_validation"></v-text-field>
+                                        <v-text-field v-model="tool.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
                                     </template>
-                                    <v-date-picker v-model="tool.calibration_expiration" label="Vencimiento de calibracion" no-title></v-date-picker>
+                                    <v-date-picker v-model="tool.date" label="Caducidad" no-title></v-date-picker>
                                 </v-menu>
                             </v-col>
+                        </v-row>
+                        <v-row>
+                           <v-col cols="4">
+                                <v-text-field label="Producto" v-model="tool.product" :rules="[rules.required]"></v-text-field>
+                            </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Localizacion principal" v-model="tool.main_localization" :rules="[rules.required]"></v-text-field>
+                                <v-text-field label="Marca" v-model="tool.brand" :rules="[rules.required]"></v-text-field>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field label="Referencia" v-model="tool.reference" :rules="[rules.required]"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="4">
-                                <v-text-field label="Localizacion de estante" v-model="tool.shelf_localization"></v-text-field>
+                           <v-col cols="4">
+                                <v-text-field label="Caracteristica 1" v-model="tool.spec1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="# de estante" v-model="tool.shelf"></v-text-field>
+                                <v-text-field label="Caracteristica 2" v-model="tool.spec2" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <p>Despachable</p>
-                                <v-radio-group row v-model="tool.dispatchable">
-                                    <v-radio label="Si" :value="true"></v-radio>
-                                    <v-radio label="No" :value="false"></v-radio>
-                                </v-radio-group>
+                                <v-text-field label="Caracteristica 3" v-model="tool.spec3" :rules="[rules.required]"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="4">
-                                <v-text-field label="Cantidad" v-model.number="tool.quantity" :rules="[rules.required, v => v > 0 || 'Cantidad invalida']"></v-text-field>
+                           <v-col cols="4">
+                                <v-text-field label="Suministrador 1" v-model="tool.supplier1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Unidad de medida" v-model="tool.measurement" :rules="[rules.required]" disabled></v-text-field>
+                                <v-text-field label="Persona de contacto 1" v-model="tool.contact1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Inventario minimo" v-model="tool.min_stock" disabled></v-text-field>
+                                <v-text-field label="Email 1" v-model="tool.email1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
-                            <v-col cols="4">
-                                <v-text-field label="Cantidad a mover" v-model.number="movingQuantity" type="number"></v-text-field>
+                           <v-col cols="4">
+                                <v-text-field label="Suministrador 2" v-model="tool.supplier2" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-textarea label="Comentarios" v-model="tool.comments" :rows="1"></v-textarea>
+                                <v-text-field label="Persona de contacto 2" v-model="tool.contact2" :rules="[rules.required]"></v-text-field>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field label="Email 2" v-model="tool.email2" :rules="[rules.required]"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                           <v-col cols="4">
+                                <v-text-field label="Suministrador 3" v-model="tool.supplier3" :rules="[rules.required]"></v-text-field>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field label="Persona de contacto 3" v-model="tool.contact3" :rules="[rules.required]"></v-text-field>
+                            </v-col>
+                            <v-col cols="4">
+                                <v-text-field label="Email 3" v-model="tool.email3" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
                                 <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" :disabled="true"></file-pond>
@@ -124,9 +130,11 @@ export default {
         movingQuantity: 0,
         menu: false,
         rules : { required: required },
-        groups: [],
         families: [],
-        brands: [],
+        countrysus: [],
+        countryors: [],
+        hazards: [],
+        kings: [],
     }),
     methods: {
         async update() {
@@ -137,15 +145,11 @@ export default {
                 const newItem = {
                     id: this.tool.id,
                     item: this.tool.item,
-                    description: this.tool.description,
-                    measurement: this.tool.measurement,
-                    group: this.tool.group,
                     family: this.tool.family,
-                    brand: this.tool.brand,
-                    model: this.tool.model,
-                    serial_number: this.tool.serial_number,
-                    calibration_expiration: this.tool.calibration_expiration,
-                    has_validation: this.tool.has_validation
+                    countrysu: this.tool.countrysu,
+                    countryor: this.tool.countryor,
+                    hazard: this.tool.hazard,
+                    king: this.tool.king
                 }
                 this.$emit('updated', newItem)
                 this.show = false
@@ -177,9 +181,11 @@ export default {
                 }
             }
         })
-        await axios.get('/api/groups', getToken()).then(response => this.groups =  response.data )
         await axios.get('/api/families', getToken()).then(response => this.families = response.data)
-        await axios.get('/api/brands', getToken()).then(response => this.brands = response.data)
+        await axios.get('/api/countrysus', getToken()).then(response => this.countrysus = response.data)
+        await axios.get('/api/countryors', getToken()).then(response => this.countryors =  response.data )
+        await axios.get('/api/hazards', getToken()).then(response => this.hazards = response.data)
+        await axios.get('/api/kings', getToken()).then(response => this.kings = response.data)
         this.loading = false
     },
     components: {
