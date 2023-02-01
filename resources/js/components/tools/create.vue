@@ -36,14 +36,14 @@
                     </div>
                 </div>
                 <div class="form-column">
-                    <v-col cols="4" v-if="filters.date.active">
+                    <div class="form-row">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
                             <template v-slot:activator="{on, attrs}">
                                 <v-text-field v-model="filter.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
                             </template>
                             <v-date-picker v-model="filter.date" label="Caducidad" no-title></v-date-picker>
                         </v-menu>
-                    </v-col>
+                    </div>
                      <div class="form-row">
                         <v-text-field v-model="tool.product" label="Producto"></v-text-field>
                     </div>
