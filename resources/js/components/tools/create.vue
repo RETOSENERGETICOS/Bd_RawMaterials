@@ -36,30 +36,67 @@
                     </div>
                 </div>
                 <div class="form-column">
-                    <div class="form-row">
-                        <v-text-field v-model="tool.serial" label="N de Serie/Serial S" :rules="[rules.required]"></v-text-field>
-                    </div>
-                    <div class="form-row">
-                        <v-text-field v-model="tool.model" label="Modelo/Model" :rules="[rules.required]"></v-text-field>
-                    </div>
-                    <div class="form-row">
-                        <v-text-field v-model="tool.processor" label="Procesador/Proc Unit"></v-text-field>
-                    </div>
-                    <div class="form-row">
+                    <v-col cols="4" v-if="filters.date.active">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
                             <template v-slot:activator="{on, attrs}">
-                                <v-text-field v-model="tool.installation" label="F Instalacion/Set Up D" v-on="on" v-bind="attrs"></v-text-field>
+                                <v-text-field v-model="filter.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
                             </template>
-                            <v-date-picker v-model="tool.installation" label="F Instalacion/Set Up D" no-title></v-date-picker>
+                            <v-date-picker v-model="filter.date" label="Caducidad" no-title></v-date-picker>
                         </v-menu>
+                    </v-col>
+                     <div class="form-row">
+                        <v-text-field v-model="tool.product" label="Producto"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.brand" label="Marca"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.reference" label="Referencia"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.spec1" label="Caracteristica 1"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="form-row">
-                        <v-text-field v-model.number="tool.quantity" label="Cantidad/QTY" :rules="[rules.required, v => v > 0 || 'Cantidad invalida']"></v-text-field>
+                        <v-text-field v-model="tool.spec2" label="Caractristica 2"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-textarea v-model="tool.comments" label="Comentarios"></v-textarea>
+                        <v-text-field v-model="tool.spec3" label="Caracteristica 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.supplier1" label="Suministrador 1"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="form-row">
+                        <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact2" label="Persona de contacto 2"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email2" label="Email 2"></v-text-field>
+                    </div>
+                     <div class="form-row">
+                        <v-text-field v-model="tool.supplier3" label="Suministrador 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="form-row">
+                        <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" @processfile="onProcessFile" :allow-multiple="true"></file-pond>
                     </div>
                 </div>
             </div>
@@ -84,23 +121,34 @@ export default {
         menu: false,
         valid: false,
         rules : { required: required },
-        dess: [],
-        brands: [],
-        sos: [],
-        usrs: [],
-        devices: [],
+        families: [],
+        countrysus: [],
+        countryors: [],
+        hazards: [],
+        kings: [],
         tool: {
-            des: null,
+            family: null,
+            countrysu: null,
+            countryor: null,
+            hazard: null,
+            king: null,
+            date: null,
+            product: null,
             brand: null,
-            so: null,
-            usr: null,
-            device: null,
-            serial: null,
-            model: null,
-            processor: null,
-            installation: null,
-            quantity: null,
-            comments: null
+            reference: null,
+            spec1: null,
+            spec2: null,
+            spec3: null,
+            supplier1: null,
+            contact1: null,
+            email1: null,
+            supplier2: null,
+            contact2: null,
+            email2: null,
+            supplier3: null,
+            contact3: null,
+            email3: null,
+            documents: []
         }
     }),
     methods: {
@@ -134,17 +182,28 @@ export default {
         },
         clearForm() {
             this.tool = {
-                des: null,
+                family: null,
+                countrysu: null,
+                countryor: null,
+                hazard: null,
+                king: null,
+                date: null,
+                product: null,
                 brand: null,
-                so: null,
-                usr: null,
-                device: null,
-                serial: null,
-                model: null,
-                processor: null,
-                installation: null,
-                quantity: null,
-                comments: null
+                reference: null,
+                spec1: null,
+                spec2: null,
+                spec3: null,
+                supplier1: null,
+                contact1: null,
+                email1: null,
+                supplier2: null,
+                contact2: null,
+                email2: null,
+                supplier3: null,
+                contact3: null,
+                email3: null,
+                documents: []
             }
             this.$refs.documents.removeFiles()
         }
@@ -167,11 +226,11 @@ export default {
                 }
             }
         })
-        await axios.get('/api/dess', getToken()).then(response => this.dess =  response.data )
-        await axios.get('/api/brands', getToken()).then(response => this.brands =  response.data )
-        await axios.get('/api/sos', getToken()).then(response => this.sos = response.data)
-        await axios.get('/api/usrs', getToken()).then(response => this.usrs = response.data)
-        await axios.get('/api/devices', getToken()).then(response => this.devices = response.data)
+        await axios.get('/api/families', getToken()).then(response => this.families = response.data)
+        await axios.get('/api/countrysus', getToken()).then(response => this.countrysus = response.data)
+        await axios.get('/api/countryors', getToken()).then(response => this.countryors = response.data)
+        await axios.get('/api/hazards', getToken()).then(response => this.hazards = response.data)
+        await axios.get('/api/kings', getToken()).then(response => this.kings = response.data)
         this.loading = false
     },
     components: {
