@@ -68,11 +68,11 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
                     </div>
@@ -88,13 +88,11 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
-                    <div class="form-row">
-                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
-                    </div>
                      <div class="form-row">
                         <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>
+                    </div>
+                    <div class="form-row">
+                        <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" @processfile="onProcessFile" :allow-multiple="true"></file-pond>
                     </div>
                 </div>
             </div>
