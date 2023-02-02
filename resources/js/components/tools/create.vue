@@ -68,11 +68,11 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
                     </div>
