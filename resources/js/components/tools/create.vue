@@ -96,9 +96,6 @@
                      <div class="form-row">
                         <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>
                     </div>
-                     <div class="form-row">
-                        <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" @processfile="onProcessFile" :allow-multiple="true"></file-pond>
-                    </div>
                 </div>
             </div>
         </v-form>
