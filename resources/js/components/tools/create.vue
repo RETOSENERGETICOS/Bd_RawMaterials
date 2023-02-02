@@ -34,14 +34,6 @@
                         <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
                         <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
-                    <v-col cols="4" v-if="filters.date.active">
-                        <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
-                            <template v-slot:activator="{on, attrs}">
-                                <v-text-field v-model="filter.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
-                            </template>
-                            <v-date-picker v-model="filter.date" label="Caducidad" no-title></v-date-picker>
-                        </v-menu>
-                    </v-col>
                     <div class="form-row">
                         <v-text-field v-model="tool.product" label="Producto"></v-text-field>
                     </div>
