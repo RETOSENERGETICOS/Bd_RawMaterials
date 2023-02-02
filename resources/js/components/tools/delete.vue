@@ -47,6 +47,7 @@ export default {
             {text: 'Pais de origen/Country of origin', value: 'countryor.name'},
             {text: 'Peligrosidad/Hazard', value: 'hazard.name'},
             {text: 'Tipo peligrosidad/King of hazard', value: 'king.name'},
+            {text: 'Caducidad/Due', value: 'date.name'},
             {text: '', value: 'edit'}
         ]
     }),
