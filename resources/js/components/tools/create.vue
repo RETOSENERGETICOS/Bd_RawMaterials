@@ -48,14 +48,14 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.spec1" label="Caracteristica 1"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.spec2" label="Caractristica 2"></v-text-field>
                     </div>
                     <div class="form-row">
                         <v-text-field v-model="tool.spec3" label="Caracteristica 3"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.supplier1" label="Suministrador 1"></v-text-field>
                     </div>
@@ -65,8 +65,6 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
                     </div>
@@ -79,6 +77,8 @@
                      <div class="form-row">
                         <v-text-field v-model="tool.supplier3" label="Suministrador 3"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
                     </div>
