@@ -32,7 +32,7 @@
                 <v-list-item @click.prevent="closeSession" link>
                     <v-list-item-icon><v-icon>mdi-exit-to-app</v-icon></v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>Cerrar Sesion</v-list-item-title>
+                        <v-list-item-title>Cerrar Sesion/Log out</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
