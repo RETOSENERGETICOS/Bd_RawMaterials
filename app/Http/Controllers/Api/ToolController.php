@@ -221,10 +221,10 @@ class ToolController extends Controller
     private function getValues($values, Tool $tool) {
 //        dd($values, $tool);
         $specialAttributes = ['family_id' => 'family','countrysu_id' => 'countrysu','countryor_id' => 'countryor','hazard_id' => 'hazard','king_id' => 'king'];
-        $names = ['item' => 'Item','family' => 'Familia','countrysu_id' => 'Pais de suministro','countryor_id' => 'Pais de origen','hazard_id' => 'Peligrosidad','king_id' => 'Tipo peligrosidad',
-            'date' => 'Caducidad','product' => 'Producto','brand' => 'Marca','reference' => 'Referencia','spec1' => 'Caracteristica 1','spec2' => 'Caracteristica 2','spec3' => 'Caracteristica 3',
-            'supplier1' => 'Suministrador 1', 'contact1' => 'Persona de contacto 1', 'email1' => 'Email 1', 'supplier2' => 'Suministrador 2', 'contact2' => 'Persona de contacto 2', 'email2' => 'Email 2',
-            'supplier3' => 'Suministrador 3', 'contact3' => 'Persona de contacto 3', 'email3' => 'Email 3'];
+        $names = ['item' => 'Item','family' => 'Familia/Family','countrysu_id' => 'Pais de suministro/Country of supply','countryor_id' => 'Pais de origen/Country of origin','hazard_id' => 'Peligrosidad/Hazard','king_id' => 'Tipo peligrosidad/King of hazard',
+            'date' => 'Caducidad/Due date','product' => 'Producto/Product','brand' => 'Marca/Brand','reference' => 'Referencia/Reference','spec1' => 'Caracteristica 1/Spec','spec2' => 'Caracteristica 2/Spec 2','spec3' => 'Caracteristica 3/Spec 3',
+            'supplier1' => 'Suministrador 1/Supplier 1', 'contact1' => 'Persona de contacto 1/Contact 1', 'email1' => 'Email 1', 'supplier2' => 'Suministrador 2/Supplier 2', 'contact2' => 'Persona de contacto 2/Contact 2', 'email2' => 'Email 2',
+            'supplier3' => 'Suministrador 3/Supplier 3', 'contact3' => 'Persona de contacto 3/Contact 3', 'email3' => 'Email 3'];
         $data = array();
         foreach (array_keys($values) as $key) {
             if (array_key_exists($key, $specialAttributes)) {

@@ -15,58 +15,58 @@
             <div class="form-container">
                 <div class="form-column">
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.family" label="Familia" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.family" label="Familia" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.family" label="Familia/Family" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.family" label="Familia/Family" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countrysu" label="Pais de suministro" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.countrysu" label="Pais de suministro" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countrysu" label="Pais de suministro/Country of supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countrysu" label="Pais de suministro/Country of supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countryor" label="Pais de origen" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.countryor" label="Pais de origen" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countryor" label="Pais de origen/Country of origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countryor" label="Pais de origen/Country of origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.hazard" label="Peligrosidad" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.hazard" label="Peligrosidad" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.hazard" label="Peligrosidad/Hazard" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.hazard" label="Peligrosidad/Hazard" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad/King of hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad/King of hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
                             <template v-slot:activator="{on, attrs}">
-                                <v-text-field v-model="tool.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
+                                <v-text-field v-model="tool.date" label="Caducidad/Due date" v-on="on" v-bind="attrs"></v-text-field>
                             </template>
-                            <v-date-picker v-model="tool.date" label="Caducidad" no-title></v-date-picker>
+                            <v-date-picker v-model="tool.date" label="Caducidad/Due date" no-title></v-date-picker>
                         </v-menu>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.product" label="Producto"></v-text-field>
+                        <v-text-field v-model="tool.product" label="Producto/Product"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="form-row">
-                        <v-text-field v-model="tool.brand" label="Marca"></v-text-field>
+                        <v-text-field v-model="tool.brand" label="Marca/Brand"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.reference" label="Referencia"></v-text-field>
+                        <v-text-field v-model="tool.reference" label="Referencia/Reference"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.spec1" label="Caracteristica 1"></v-text-field>
+                        <v-text-field v-model="tool.spec1" label="Caracteristica 1/Spec"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.spec2" label="Caractristica 2"></v-text-field>
+                        <v-text-field v-model="tool.spec2" label="Caractristica 2/Spec 2"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.spec3" label="Caracteristica 3"></v-text-field>
+                        <v-text-field v-model="tool.spec3" label="Caracteristica 3/Spec 3"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.supplier1" label="Suministrador 1"></v-text-field>
+                        <v-text-field v-model="tool.supplier1" label="Suministrador 1/Supplier 1"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
+                        <v-text-field v-model="tool.contact1" label="Persona de contacto 1/Contact 1"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
@@ -74,19 +74,19 @@
                         <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.supplier2" label="Suministrador 2"></v-text-field>
+                        <v-text-field v-model="tool.supplier2" label="Suministrador 2/Supplier 2"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact2" label="Persona de contacto 2"></v-text-field>
+                        <v-text-field v-model="tool.contact2" label="Persona de contacto 2/Contact 2"></v-text-field>
                     </div>
                     <div class="form-row">
                         <v-text-field v-model="tool.email2" label="Email 2"></v-text-field>
                     </div>
                      <div class="form-row">
-                        <v-text-field v-model="tool.supplier3" label="Suministrador 3"></v-text-field>
+                        <v-text-field v-model="tool.supplier3" label="Suministrador 3/Supplier 3"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
+                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3/Contact 3"></v-text-field>
                     </div>
                      <div class="form-row">
                         <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>

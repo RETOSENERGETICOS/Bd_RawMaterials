@@ -17,21 +17,21 @@
                     <v-form v-model="valid">
                         <v-row>
                             <v-col cols="4">
-                                <v-combobox label="Familia" v-model="tool.family" item-text="name" :items="families" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
+                                <v-combobox label="Familia/Family" v-model="tool.family" item-text="name" :items="families" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Pais de suministro" v-model="tool.countrysu" item-text="name" :items="countrysus" clearable item-value="name"></v-combobox>
+                                <v-combobox label="Pais de suministro/Country of supply" v-model="tool.countrysu" item-text="name" :items="countrysus" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Pais de origen" v-model="tool.countryor" item-text="name" :items="countryors" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
+                                <v-combobox label="Pais de origen/Country of origin" v-model="tool.countryor" item-text="name" :items="countryors" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
                         </v-row>
                         <v-row>
                             <v-col cols="4">
-                                <v-combobox label="Peligrosidad" v-model="tool.hazard" item-text="name" :items="hazards" item-value="name" disabled></v-combobox>
+                                <v-combobox label="Peligrosidad/Hazard" v-model="tool.hazard" item-text="name" :items="hazards" item-value="name" disabled></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Tipo peligrosidad" v-model="tool.king" item-text="name" :items="kings" clearable item-value="name"></v-combobox>
+                                <v-combobox label="Tipo peligrosidad/King of hazard" v-model="tool.king" item-text="name" :items="kings" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
                                 <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">

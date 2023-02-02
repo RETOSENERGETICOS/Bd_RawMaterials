@@ -42,11 +42,11 @@ export default {
         loading: false,
         headers: [
             {text: 'ITEM', value: 'item'},
-            {text: 'Familia', value: 'family.name'},
-            {text: 'Pais de suministro', value: 'countrysu.name'},
-            {text: 'Pais de origen', value: 'countryor.name'},
-            {text: 'Peligrosidad', value: 'hazard.name'},
-            {text: 'Tipo peligrosidad', value: 'king.name'},
+            {text: 'Familia/Family', value: 'family.name'},
+            {text: 'Pais de suministro/Country of supply', value: 'countrysu.name'},
+            {text: 'Pais de origen/Country of origin', value: 'countryor.name'},
+            {text: 'Peligrosidad/Hazard', value: 'hazard.name'},
+            {text: 'Tipo peligrosidad/King of hazard', value: 'king.name'},
             {text: '', value: 'edit'}
         ]
     }),
