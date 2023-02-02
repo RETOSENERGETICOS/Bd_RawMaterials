@@ -34,11 +34,19 @@
                         <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
                         <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
-                </div>
-                <div class="form-column">
+                    <v-col cols="4" v-if="filters.date.active">
+                        <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
+                            <template v-slot:activator="{on, attrs}">
+                                <v-text-field v-model="filter.date" label="Caducidad" v-on="on" v-bind="attrs"></v-text-field>
+                            </template>
+                            <v-date-picker v-model="filter.date" label="Caducidad" no-title></v-date-picker>
+                        </v-menu>
+                    </v-col>
                     <div class="form-row">
                         <v-text-field v-model="tool.product" label="Producto"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.brand" label="Marca"></v-text-field>
                     </div>
@@ -54,14 +62,14 @@
                     <div class="form-row">
                         <v-text-field v-model="tool.spec3" label="Caracteristica 3"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.supplier1" label="Suministrador 1"></v-text-field>
                     </div>
                     <div class="form-row">
                         <v-text-field v-model="tool.contact1" label="Persona de contacto 1"></v-text-field>
                     </div>
+                </div>
+                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.email1" label="Email 1"></v-text-field>
                     </div>
@@ -77,17 +85,18 @@
                      <div class="form-row">
                         <v-text-field v-model="tool.supplier3" label="Suministrador 3"></v-text-field>
                     </div>
-                </div>
-                <div class="form-column">
                     <div class="form-row">
                         <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="form-row">
+                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3"></v-text-field>
+                    </div>
+                     <div class="form-row">
                         <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>
                     </div>
-                    <div class="form-row">
+                     <div class="form-row">
                         <file-pond name="documents" ref="documents" label-idle="Archivos" accepted-file-types="application/pdf" @processfile="onProcessFile" :allow-multiple="true"></file-pond>
                     </div>
                 </div>
