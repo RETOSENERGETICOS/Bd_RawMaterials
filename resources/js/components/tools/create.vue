@@ -35,6 +35,14 @@
                         <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
+                        <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
+                            <template v-slot:activator="{on, attrs}">
+                                <v-text-field v-model="tool.installation" label="F Instalacion/Set Up D" v-on="on" v-bind="attrs"></v-text-field>
+                            </template>
+                            <v-date-picker v-model="tool.installation" label="F Instalacion/Set Up D" no-title></v-date-picker>
+                        </v-menu>
+                    </div>
+                    <div class="form-row">
                         <v-text-field v-model="tool.product" label="Producto"></v-text-field>
                     </div>
                 </div>
