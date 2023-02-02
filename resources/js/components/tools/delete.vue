@@ -5,7 +5,7 @@
             <v-card>
                 <v-card-title>Desea eliminar los registros seleccionados?</v-card-title>
                 <v-card-actions>
-                    <v-btn color="success" @click.prevent="deleteTools">Eliminar</v-btn>
+                    <v-btn color="success" @click.prevent="deleteTools">Eliminar/Delete</v-btn>
                     <v-btn color="error">Cancelar/Cancel</v-btn>
                 </v-card-actions>
             </v-card>
@@ -17,7 +17,7 @@
                     <v-divider class="mx-4" inset vertical></v-divider>
                     <v-spacer></v-spacer>
                     <v-text-field v-model="search" label="Buscar/Search" hide-details></v-text-field>
-                    <v-btn color="error" :disabled="selected.length === 0" @click="dialog = true">Eliminar</v-btn>
+                    <v-btn color="error" :disabled="selected.length === 0" @click="dialog = true">Eliminar/Delete</v-btn>
                 </v-toolbar>
             </template>
             <template #item.has_validation="{item}">{{ item.has_validation ? 'Si' : 'No' }}</template>
