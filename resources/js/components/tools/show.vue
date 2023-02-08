@@ -20,10 +20,10 @@
                                 <v-combobox label="Familia/Family" v-model="tool.family" item-text="name" :items="families" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Pais de suministro/Country of supply" v-model="tool.countrysu" item-text="name" :items="countrysus" clearable item-value="name"></v-combobox>
+                                <v-combobox label="Pais de Suministro/Country of Supply" v-model="tool.countrysu" item-text="name" :items="countrysus" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Pais de origen/Country of origin" v-model="tool.countryor" item-text="name" :items="countryors" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
+                                <v-combobox label="Pais de Origen/Country of Origin" v-model="tool.countryor" item-text="name" :items="countryors" :rules="[rules.required]" clearable item-value="name" disabled></v-combobox>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -31,7 +31,7 @@
                                 <v-combobox label="Peligrosidad/Hazard" v-model="tool.hazard" item-text="name" :items="hazards" item-value="name" disabled></v-combobox>
                             </v-col>
                             <v-col cols="4">
-                                <v-combobox label="Tipo peligrosidad/King of hazard" v-model="tool.king" item-text="name" :items="kings" clearable item-value="name"></v-combobox>
+                                <v-combobox label="Tipo de Peligrosidad/King of Hazard" v-model="tool.king" item-text="name" :items="kings" clearable item-value="name"></v-combobox>
                             </v-col>
                             <v-col cols="4">
                                 <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
@@ -69,7 +69,7 @@
                                 <v-text-field label="Suministrador 1" v-model="tool.supplier1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Persona de contacto 1" v-model="tool.contact1" :rules="[rules.required]"></v-text-field>
+                                <v-text-field label="Persona de Contacto 1" v-model="tool.contact1" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
                                 <v-text-field label="Email 1" v-model="tool.email1" :rules="[rules.required]"></v-text-field>
@@ -80,7 +80,7 @@
                                 <v-text-field label="Suministrador 2" v-model="tool.supplier2" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Persona de contacto 2" v-model="tool.contact2" :rules="[rules.required]"></v-text-field>
+                                <v-text-field label="Persona de Contacto 2" v-model="tool.contact2" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
                                 <v-text-field label="Email 2" v-model="tool.email2" :rules="[rules.required]"></v-text-field>
@@ -91,7 +91,7 @@
                                 <v-text-field label="Suministrador 3" v-model="tool.supplier3" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
-                                <v-text-field label="Persona de contacto 3" v-model="tool.contact3" :rules="[rules.required]"></v-text-field>
+                                <v-text-field label="Persona de Contacto 3" v-model="tool.contact3" :rules="[rules.required]"></v-text-field>
                             </v-col>
                             <v-col cols="4">
                                 <v-text-field label="Email 3" v-model="tool.email3" :rules="[rules.required]"></v-text-field>

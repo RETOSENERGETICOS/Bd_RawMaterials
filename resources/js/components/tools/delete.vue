@@ -43,10 +43,10 @@ export default {
         headers: [
             {text: 'ITEM', value: 'item'},
             {text: 'Familia/Family', value: 'family.name'},
-            {text: 'Pais de suministro/Country of supply', value: 'countrysu.name'},
-            {text: 'Pais de origen/Country of origin', value: 'countryor.name'},
+            {text: 'Pais de Suministro/Country of Supply', value: 'countrysu.name'},
+            {text: 'Pais de Origen/Country of Origin', value: 'countryor.name'},
             {text: 'Peligrosidad/Hazard', value: 'hazard.name'},
-            {text: 'Tipo peligrosidad/King of hazard', value: 'king.name'},
+            {text: 'Tipo de Peligrosidad/King of Hazard', value: 'king.name'},
             {text: 'Caducidad/Due', value: 'date.name'},
             {text: '', value: 'edit'}
         ]

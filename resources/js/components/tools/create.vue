@@ -19,20 +19,20 @@
                         <v-select v-else v-model.trim="tool.family" label="Familia/Family" :items="familys" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countrysu" label="Pais de suministro/Country of supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.countrysu" label="Pais de suministro/Country of supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countrysu" label="Pais de Suministro/Country of Supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countrysu" label="Pais de Suministro/Country of Supply" :items="countrysus" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countryor" label="Pais de origen/Country of origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.countryor" label="Pais de origen/Country of origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.countryor" label="Pais de Origen/Country of Origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.countryor" label="Pais de Origen/Country of Origin" :items="countryors" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
                         <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.hazard" label="Peligrosidad/Hazard" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
                         <v-select v-else v-model.trim="tool.hazard" label="Peligrosidad/Hazard" :items="hazards" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
-                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo peligrosidad/King of hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
-                        <v-select v-else v-model.trim="tool.king" label="Tipo peligrosidad/King of hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
+                        <v-combobox v-if="verifyAccess([1])" v-model.trim="tool.king" label="Tipo de Peligrosidad/King of Hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-combobox>
+                        <v-select v-else v-model.trim="tool.king" label="Tipo de Peligrosidad/King of Hazard" :items="kings" item-text="name" :rules="[rules.required]" clearable item-value="name"></v-select>
                     </div>
                     <div class="form-row">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
@@ -66,7 +66,7 @@
                         <v-text-field v-model="tool.supplier1" label="Suministrador 1/Supplier 1"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact1" label="Persona de contacto 1/Contact 1"></v-text-field>
+                        <v-text-field v-model="tool.contact1" label="Persona de Contacto 1/Contact 1"></v-text-field>
                     </div>
                 </div>
                 <div class="form-column">
@@ -77,7 +77,7 @@
                         <v-text-field v-model="tool.supplier2" label="Suministrador 2/Supplier 2"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact2" label="Persona de contacto 2/Contact 2"></v-text-field>
+                        <v-text-field v-model="tool.contact2" label="Persona de Contacto 2/Contact 2"></v-text-field>
                     </div>
                     <div class="form-row">
                         <v-text-field v-model="tool.email2" label="Email 2"></v-text-field>
@@ -86,7 +86,7 @@
                         <v-text-field v-model="tool.supplier3" label="Suministrador 3/Supplier 3"></v-text-field>
                     </div>
                     <div class="form-row">
-                        <v-text-field v-model="tool.contact3" label="Persona de contacto 3/Contact 3"></v-text-field>
+                        <v-text-field v-model="tool.contact3" label="Persona de Contacto 3/Contact 3"></v-text-field>
                     </div>
                      <div class="form-row">
                         <v-text-field v-model="tool.email3" label="Email 3"></v-text-field>

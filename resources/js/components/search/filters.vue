@@ -16,10 +16,10 @@
                 </v-row>
                 <v-row>
                     <v-col cols="4" v-if="filters.family.active"><v-select v-model="filter.family" label="Familia/Family" :items="families" item-text="name" return-object clearable></v-select></v-col>
-                    <v-col cols="4" v-if="filters.countrysu.active"><v-select v-model="filter.countrysu" label="Pais de suministro/Country of supply" :items="countrysus" item-text="name" return-object clearable></v-select></v-col>
-                    <v-col cols="4" v-if="filters.countryor.active"><v-select v-model="filter.countryor" label="Pais de origen/Country of origin" :items="countryors" item-text="name" return-object clearable></v-select></v-col>
+                    <v-col cols="4" v-if="filters.countrysu.active"><v-select v-model="filter.countrysu" label="Pais de Suministro/Country of Supply" :items="countrysus" item-text="name" return-object clearable></v-select></v-col>
+                    <v-col cols="4" v-if="filters.countryor.active"><v-select v-model="filter.countryor" label="Pais de Origen/Country of Origin" :items="countryors" item-text="name" return-object clearable></v-select></v-col>
                     <v-col cols="4" v-if="filters.hazard.active"><v-select v-model="filter.hazard" label="Peligrosidad/Hazard" :items="hazards" item-text="name" return-object clearable></v-select></v-col>
-                    <v-col cols="4" v-if="filters.king.active"><v-select v-model="filter.king" label="Tipo peligrosidad/King of hazard" :items="kings" item-text="name" return-object clearable></v-select></v-col>
+                    <v-col cols="4" v-if="filters.king.active"><v-select v-model="filter.king" label="Tipo de Peligrosidad/King of Hazard" :items="kings" item-text="name" return-object clearable></v-select></v-col>
                    
                     <v-col cols="4" v-if="filters.date.active">
                         <v-menu ref="datePickerMenu" v-model="menu" :close-on-content-click="false" offset-y min-width="auto">
